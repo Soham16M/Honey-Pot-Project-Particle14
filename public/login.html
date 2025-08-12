@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login - ShopHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="main-content">
+    <div class="container">
+        <div style="max-width: 400px; margin: 0 auto;">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2 class="card-title">Welcome Back</h2>
+                    <p class="card-description">Sign in to your ShopHub account</p>
+                </div>
+
+                <form id="loginForm" novalidate>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+                    </div>
+
+                    <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
+                            <input type="checkbox" name="remember"> Remember me
+                        </label>
+                        <a href="reset_password.html" style="color: var(--primary); text-decoration: none; font-size: 0.875rem;">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg">Sign In</button>
+
+                    <div class="text-center mt-3">
+                        <p style="color: var(--text-secondary); font-size: 0.875rem;">
+                            Don't have an account? 
+                            <a href="register.html" style="color: var(--primary); text-decoration: none; font-weight: 500;">Create one here</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (email && password) {
+        localStorage.setItem("role", "user");
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("userData", JSON.stringify({
+            firstName: "John",
+            lastName: "Doe",
+            email: email
+        }));
+        alert("User login successful!");
+        window.location.href = "home.html";
+    } else {
+        alert("Please enter email and password!");
+    }
+});
+</script>
+
+</body>
+</html>
